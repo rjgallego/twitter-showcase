@@ -3,8 +3,8 @@ const axios = require('axios');
 const searchRouter = express.Router();
 
 const SEARCH_URL = 'https://api.twitter.com/1.1/search/tweets.json';
+const SEARCH_QUERY = '%28edm+OR+music+OR+stage+OR+album+OR+stadium+OR+perform+OR+announce%29&result_type=recent';
 const STATUS_URL = 'https://api.twitter.com/1.1/statuses/show.json?id';
-
 
 const options = {
     headers: {
@@ -15,7 +15,7 @@ const options = {
 searchRouter.get('/usernames', (req, res) => {
     const query = req.query.q;
 
-    axios.get(`${SEARCH_URL}?q=${query}&result_type=mixed`, options)
+    axios.get(`${SEARCH_URL}?q=%23${query}+${SEARCH_QUERY}`, options)
          .then(result => {
             const usernames = result.data.statuses.map(status => {
                 return status.user.screen_name;
@@ -24,10 +24,10 @@ searchRouter.get('/usernames', (req, res) => {
          })
 })
 
-searchRouter.get('/tweets', (req, res) => {
+searchRouter.get('/content', (req, res) => {
     const query = req.query.q;
 
-    axios.get(`${SEARCH_URL}?q=${query}&result_type=mixed`, options)
+    axios.get(`${SEARCH_URL}?q=%23${query}+${SEARCH_QUERY}`, options)
     .then(result => result.data)
     .then(resultData => {
         getTweetData(resultData.statuses).then(tweetData => res.send(tweetData));
@@ -65,6 +65,5 @@ const getTweetData = async (tweetArray) => {
         } 
     }))
 }
-
 
 module.exports = searchRouter;
