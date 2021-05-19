@@ -3,10 +3,8 @@ const axios = require('axios');
 const searchRouter = express.Router();
 
 const SEARCH_URL = 'https://api.twitter.com/1.1/search/tweets.json';
-const USER_URL = 'https://api.twitter.com/2/users/by';
-const USER_QUERY = 'tweet.fields=author_id,created_at';
-const TWEET_URL = 'https://api.twitter.com/2/tweets';
-const TWEET_QUERY = 'tweet.fields=attachments,author_id,created_at,entities,id,text,withheld';
+const STATUS_URL = 'https://api.twitter.com/1.1/statuses/show.json?id';
+
 
 const options = {
     headers: {
@@ -26,48 +24,46 @@ searchRouter.get('/usernames', (req, res) => {
          })
 })
 
-searchRouter.get('/:index/content', (req, res) => {
-    const index = req.params.index;
+searchRouter.get('/tweets', (req, res) => {
     const query = req.query.q;
 
-    getQueryData(index, query).then(data => {
-        axios.get(`${TWEET_URL}/${data.tweetId}?${TWEET_QUERY}`, options)
-        .then(result => result.data.data)
-        .then(resultData => {
-            const response = {
-                "id" : data.tweetId,
-                "text" : resultData.text,
-                "name" : data.name,
-                "screen_name" : data.screenName,
-                "profile_image_url": data.profileUrl,
-                "media_urls": resultData.entities.urls[0].images,
-                "created_at" : resultData.created_at,
-            }
-            res.send(response)
+    axios.get(`${SEARCH_URL}?q=${query}&result_type=mixed`, options)
+    .then(result => result.data)
+    .then(resultData => {
+        getTweetData(resultData.statuses).then(tweetData => res.send(tweetData));
+    })        
+    .catch(error => {
+        res.status(error.response.status).send({
+            "error": error.response.statusText
         })
     })
 });
 
-searchRouter.get('/user/:username', (req, res) => {
-    const username = req.params.username;
-    axios.get(`${USER_URL}?usernames=${username}&${USER_QUERY}`, options)
-    .then(result => {
-        res.send(result.data.data[0]);
-    })
-})
+const getTweetData = async (tweetArray) => {
+    return await Promise.all(tweetArray.map( async (tweet) => {
+        const tweetInfo = await axios.get(`${STATUS_URL}=${tweet.id_str}`, options)
 
-const getQueryData = async (index, query) => {
-    const queryData = await axios.get(`${SEARCH_URL}?q=${query}&result_type=mixed`, options)
-        .catch(e => res.status(e.response.status).send({ "Error" : e.response.statusText}))
+        if(!tweetInfo) {
+            return {
+                "status": 500,
+                "error": "Invalid URL or request"
+            }
+        }
 
-    const tweet = queryData.data.statuses[index]
+        const mediaUrl = tweetInfo.data.entities.media ? tweetInfo.data.entities.media[0].media_url_https : "" 
 
-    return {
-        "tweetId": tweet.id_str,
-        "name": tweet.user.name,
-        "screenName": tweet.user.screen_name,
-        "profileUrl": tweet.user.profile_image_url_https
-    }
+        return {
+            'id': tweet.id,
+            'text': tweetInfo.data.text,
+            'media_url': mediaUrl,
+            'created_at': tweetInfo.data.created_at,
+            'user': {
+                'name': tweetInfo.data.user.name,
+                'screen_name': tweetInfo.data.user.screen_name,
+                'profile_img_url': tweetInfo.data.user.profile_image_url_https
+            }
+        } 
+    }))
 }
 
 
