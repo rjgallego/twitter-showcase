@@ -3,11 +3,11 @@ const express = require('express');
 const app = express();
 
 const searchRouter = require('./routes/searchRouter');
-const discoverRouter = require('./routes/discoverRouter');
+const userRouter = require('./routes/userRouter');
 
 const port = 8080;
 
 app.use('/search', searchRouter);
-app.use('/discover', discoverRouter);
+app.use('/user', userRouter);
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
