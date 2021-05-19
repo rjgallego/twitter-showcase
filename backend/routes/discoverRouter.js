@@ -2,7 +2,7 @@ const { default: axios } = require('axios');
 const express = require('express');
 const discoverRouter = express.Router();
 
-const STATUS_URL = 'https://api.twitter.com/1.1/statuses/show.json?id'
+const STATUS_URL = 'https://api.twitter.com/1.1/statuses/show.json?id';
 const SEARCH_URL = 'https://api.twitter.com/2/tweets/search/recent?query=from'
 const SEARCH_PARAMETERS = 'tweet.fields=created_at&expansions=author_id&user.fields=created_at';
 
@@ -29,6 +29,14 @@ discoverRouter.get('/:username', (req, res) => {
 const getTweetInfo = async (tweetArray) => {
     return await Promise.all(tweetArray.map( async (tweet) => {
         const tweetInfo = await axios.get(`${STATUS_URL}=${tweet.id}`, options);
+
+        if(!tweetInfo) {
+            return {
+                "status": 500,
+                "error": "Invalid URL or request"
+            }
+        }
+        
         const mediaUrl = tweetInfo.data.entities.media ? tweetInfo.data.entities.media[0].media_url_https : "" 
 
         return {
