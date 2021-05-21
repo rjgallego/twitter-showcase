@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Dorsa&display=swap');
+
+.text-div{
+    height: 100%;
+    color: white;
+}
+
+#title {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#main-title {
+    font-family: 'Dorsa', sans-serif;
+    font-size: 30vh;
+}
+
+#sub-title{
+    font-size: 20px;
+}
