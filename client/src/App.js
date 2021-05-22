@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, BrowserRouter} from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import DiscoverPage from './components/DiscoverPage/DiscoverPage';
 import SearchPage from './components/SearchPage/SearchPage';
