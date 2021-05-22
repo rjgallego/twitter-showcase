@@ -16,16 +16,25 @@
     position: fixed;
     top: 15%;
     left: 10%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: y mandatory;
+}
+
+#main-content::-webkit-scrollbar {
+    display: none;
 }
 
 #logo{
     background-color: white;
+    position: absolute;
     width: 160px;
     height: 80px;
-    position: absolute;
     top: 50%;
-    font-family: 'Dorsa', sans-serif;
     font-size: 5em;
+    font-family: 'Dorsa', sans-serif;
     padding: 0;
     text-align: center;
 }
