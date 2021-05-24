@@ -1,9 +1,9 @@
 import './App.css';
 import {Route, BrowserRouter} from 'react-router-dom';
-import HomePage from './components/HomePage/HomePage';
-import DiscoverPage from './components/DiscoverPage/DiscoverPage';
-import SearchPage from './components/SearchPage/SearchPage';
-import PageLayout from './components/PageLayout';
+import HomePage from './pages/HomePage/HomePage';
+import DiscoverPage from './pages/DiscoverPage/DiscoverPage';
+import SearchPage from './pages/SearchPage/SearchPage';
+import PageLayout from './pages/PageLayout';
 
 function App() {
   return (
