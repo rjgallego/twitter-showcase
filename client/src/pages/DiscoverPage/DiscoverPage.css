@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Dorsa&display=swap');
+
+
+#artist-options{
+    position: fixed;
+    right: 0;
+    top: 30%;
+}
+
+.option-button{
+    background-color: rgba(255,255,255, 1);
+    width: 200px;
+    height: 55px;
+    font-size: 3em;
+    font-family: 'Dorsa', sans-serif;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.selected-option{
+    background-color: rgba(0,0,0, 0.2);
+    border: 1px solid white;
+    color: white;
+}
