@@ -1,0 +1,52 @@
+#card-main{
+    background-color: white;
+    width: 30vw;
+    height: 65vh;
+    margin: 2vh auto;
+    padding: 10px;
+}
+
+#artist-info{
+    display: flex;
+    align-items: center; 
+    font-size: 0.9em;  
+}
+
+#artist-profile-img {
+    height: 3.5em;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+#artist-name {
+    font-weight: bold;
+}
+
+#artist-screen-name{
+    color: gray;
+}
+
+#tweet-text{
+    font-size: 0.9em;
+    margin: 10px 0px;
+}
+
+#tweet-media-div{
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+}
+
+#tweet-media-content{
+    border-radius: 5px;
+}
+
+#tweet-timestamp {
+    position: relative;
+    margin-top: 2.5vh;
+    color: gray;
+    font-size: 0.75em;
+}
