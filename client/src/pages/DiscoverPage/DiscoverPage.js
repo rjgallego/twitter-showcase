@@ -8,17 +8,6 @@ const DiscoverPage = () => {
         changeElementClass(event.target.id, '.option-button', 'selected-option');
     }
 
-    const setSelectedOptionClass = (id) => {
-        const navOptions = document.querySelectorAll('.option-button');
-        navOptions.forEach((e, i) => {
-            if(e.id === id){
-                e.classList.add('selected-option');
-                return;
-            }
-            e.classList.remove('selected-option');
-        })
-    }
-
     return (
         <div id="discover-content">
             <div id="artist-options">
