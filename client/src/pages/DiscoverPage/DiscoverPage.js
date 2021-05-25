@@ -14,7 +14,6 @@ const DiscoverPage = () => {
 
     useEffect(() => {
         getTweetArray('illenium')
-        console.log(tweetArray);
     }, [])
 
     const getTweetArray = (username) => {
