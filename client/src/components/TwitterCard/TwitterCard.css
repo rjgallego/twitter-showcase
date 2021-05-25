@@ -1,8 +1,7 @@
 #card-main{
     background-color: white;
     width: 30vw;
-    height: 65vh;
-    margin: 2vh auto;
+    max-height: 65vh;
     padding: 10px;
 }
 
@@ -34,10 +33,14 @@
 #tweet-media-div{
     display: flex;
     justify-content: center;
-    height: 40vh;
+    max-height: 40vh;
     width: 100%;
     overflow: hidden;
     margin: auto;
+}
+
+#tweet-media-content {
+    height: 40vh;
 }
 
 #tweet-media-content{
