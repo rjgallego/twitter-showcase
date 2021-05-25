@@ -53,13 +53,16 @@ const getTweetInfo = async (tweetArray) => {
             }
         }
         
-        const mediaUrl = tweetInfo.data.entities.media ? tweetInfo.data.entities.media[0].media_url_https : "" 
+        const tweetEntities = tweetInfo.data.entities;
+        const mediaUrl = tweetEntities.media ? tweetEntities.media[0].media_url_https : "";
+        const tweetUrl = tweetEntities.urls[0] ? tweetEntities.urls[0].url : "";
 
         return {
             'id': tweet.id,
             'text': tweetInfo.data.text,
             'media_url': mediaUrl,
             'created_at': tweetInfo.data.created_at,
+            'url' : tweetUrl,
             'user': {
                 'name': tweetInfo.data.user.name,
                 'screen_name': tweetInfo.data.user.screen_name,
