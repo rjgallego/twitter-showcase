@@ -30,7 +30,7 @@ const TwitterCard = ({ TweetData }) => {
                 }
             </div>
             <div id="tweet-timestamp">{convertTimestamp()}</div>
-        </div>
+        </div> 
     )
 }
 
