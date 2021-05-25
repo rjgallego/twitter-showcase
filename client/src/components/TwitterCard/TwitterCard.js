@@ -11,10 +11,6 @@ const TwitterCard = ({ TweetData }) => {
         return `${time} - ${timestampArray[1]} ${timestampArray[2]}, ${timestampArray[3]}`
     }
 
-    // const displayMediaImg = () => {
-    //     return 
-    // }
-
     return (
         <div id="card-main">
             <div id="artist-info">
