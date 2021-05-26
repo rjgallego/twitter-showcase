@@ -1,48 +1,16 @@
-import React, { useEffect } from 'react';
-import 'aos/dist/aos.css';
+import React from 'react';
 
 import './HomePage.css';
 
 const HomePage = () => {
-
-
-    useEffect(() => {
-        setScrollListener();
-    }, [])
-
-    const setScrollListener = () => {
-        const container = document.getElementById('main-content');
-        const textContent = document.querySelectorAll('.text-div')
-        container.addEventListener('scroll', () => {
-            textContent.forEach((e, i) => {
-                const top = (e.getBoundingClientRect().top);
-                if(top < 200 && top > -150) {
-                    e.classList.add('in-view')
-                    setInvisibleClass(e)
-                } else {
-                    e.classList.remove('in-view');
-                }
-            })
-        })
-    }
-
-    const setInvisibleClass = (element) => {
-        const pointer = document.getElementById('pointer');
-        if(element.id === 'discover-div'){
-            pointer.style.display = 'none';
-            return;
-        }
-        pointer.style.display = 'block';
-    }
-
     return (
         <div id="home-content">
-            <div id="title" className="text-div in-view">
+            <div id="title" className="text-div scroll-div in-view">
                 <div id="sub-title">Using Twitter to Discover</div>
                 <div id="main-title">Electronic Artists</div>
             </div>
-            <div id="pointer">V</div>
-            <div className="text-div">
+            <div className="pointer">V</div>
+            <div className="text-div scroll-div">
                 <div className="info-div">
                     <div className="info-img"></div>
                     <div className="info-text">
@@ -53,7 +21,7 @@ const HomePage = () => {
                     </div>  
                 </div>             
             </div>
-            <div id="discover-div" className="text-div">
+            <div id="discover-div" className="text-div scroll-div end">
                 <div className="info-div">
                     <div className="info-text">
                         <span>Disover Top EDM Artists</span>
