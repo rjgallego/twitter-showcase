@@ -11,11 +11,14 @@
     height: 80vh;
     width: 100%;
     color: white;
+}
+
+.scroll-div{
     scroll-snap-align: center;
     opacity: 0;
     transition: opacity 2s;
 }
-.text-div.in-view {
+.scroll-div.in-view {
     opacity: 1;
 }
 
@@ -60,7 +63,7 @@
     font-size: 20px;
 }
 
-#pointer {
+.pointer {
     position: fixed;
     bottom: 50px;
     font-size: 1.3rem;
