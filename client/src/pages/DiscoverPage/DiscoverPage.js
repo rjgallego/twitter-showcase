@@ -9,12 +9,13 @@ import {changeElementClass} from '../../helpers';
 
 const DiscoverPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
-    const [tweetIndex, setTweetIndex] = useState(0);
+
     const DISCOVER_URL = "http://localhost:8080/user?username"
 
     useEffect(() => {
         getTweetArray('illenium')
     }, [])
+
 
     const getTweetArray = (username) => {
         axios.get(`${DISCOVER_URL}=${username}`)
@@ -27,15 +28,37 @@ const DiscoverPage = () => {
         getTweetArray(event.target.id);
     }
 
+    const createTweetDivs = () => {
+        return tweetArray.map((tweetData, i) => {
+            if(i === 0) {
+                return  <div key={i} className="page-content in-view scroll-div">
+                            <TwitterCard TweetData={tweetData} />
+                        </div>
+            }
+            if(i === (tweetArray.length - 1)) {
+                return  <div key={i} className="page-content scroll-div end">
+                            <TwitterCard TweetData={tweetData} />
+                        </div>
+            }
+
+            return  <div key={i} className="page-content scroll-div">
+                        <TwitterCard TweetData={tweetData} />
+                    </div>
+        })
+    }
+
     return (
         <div id="discover-content">
-            <div id="page-content">
-                {
-                    tweetArray.length === 0 ?
+            {
+                tweetArray.length === 0 ?
+                    <div id="loader-div" className="page-content">
                         <Loader type="Bars" color="#FFFFFF" height={80} width={80} />
-                    :   <TwitterCard TweetData={tweetArray[tweetIndex]} />
-                }
-            </div>
+                    </div>
+                :   createTweetDivs()
+            }
+            {
+                tweetArray.length === 1 ? <div className="pointer"></div> : <div id="scroll-pointer" className="pointer">V</div>
+            }
             <div id="artist-options">
                 <div id="illenium" className="option-button selected-option" onClick={handleClick}>Illenium</div>
                 <div id="iamalanwalker" className="option-button" onClick={handleClick}>Alan Walker</div>
