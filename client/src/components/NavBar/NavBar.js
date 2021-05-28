@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import {FiMenu} from 'react-icons/fi';
 import {changeElementClass} from '../../helpers';
 import './NavBar.css'
 
 const NavBar = () => {
+    const [isMenuShowing, setIsMenuShowing] = useState(false);
 
     const handleClick = (event) => {
         changeElementClass(event.target.id, '.nav-option', 'selected')
     }
 
+    const handleMobileClick = () => {
+        if(isMenuShowing){
+            document.getElementsByClassName("mobile")[0].classList.remove('full-screen')
+            document.querySelectorAll('.nav-option').forEach(navOption => {
+                navOption.classList.remove('visible');
+            })
+        } else {
+            document.getElementsByClassName("mobile")[0].classList.add('full-screen')
+            document.querySelectorAll('.nav-option').forEach(navOption => {
+                navOption.classList.add('visible');
+            })
+        }
+        setIsMenuShowing(!isMenuShowing);
+    }
+
     return(
         <nav id="main">
+            <div className="mobile" onClick={handleMobileClick}><FiMenu size="3em"/></div>
             <Link to='/' id="home-link" className="nav-option selected" onClick={handleClick}>Home</Link>
             <Link to='/search' id="search-link" className="nav-option" onClick={handleClick}>Search</Link>
             <Link to='/discover' id="discover-link" className="nav-option" onClick={handleClick}>Discover</Link>
