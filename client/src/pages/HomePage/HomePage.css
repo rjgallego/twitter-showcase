@@ -83,3 +83,30 @@
     40% {bottom: 60px;} 
     60% {bottom: 60px;} 
  } 
+
+ @media (max-width: 700px) {
+    #main-title{
+        font-size: 20vh;
+        text-align: center;
+     }
+
+     .info-text{
+        padding: 0;
+        width: 100%;
+    }
+
+     .info-img{
+        display: none;
+    }
+
+    .info-div{
+        display: block;
+        height: 300px;
+        margin: auto;
+    }
+
+    .scroll-div{
+        opacity: 1;
+    }
+
+ }
