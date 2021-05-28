@@ -20,3 +20,44 @@
 .selected{
     border-bottom: 5px solid white;
 }
+
+.mobile{
+    display: none;
+}
+
+@media (max-width: 700px){
+    #main{
+        display: block;
+    }
+
+    .nav-option{
+        z-index: 2;
+        flex-flow: column;
+        color: black;
+        border-bottom: 2px solid black;
+        position: relative;
+        width: 92%;
+        top: 40px;
+        opacity: 0;
+    }
+
+    .nav-option.visible{
+        opacity: 1;
+    }
+
+    .mobile{
+        display: block;
+        color: black;
+        position: fixed;
+        z-index: 1;
+        padding: 15px 10px 10px 10px;
+        height: 8vh;
+        width: 15%;
+        background-color: white;
+    }
+
+    .mobile.full-screen{
+        height: 45vh;
+        width: 100%;
+    }
+}
