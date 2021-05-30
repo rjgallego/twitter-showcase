@@ -7,10 +7,15 @@ import {changeElementClass, getTweetsByUsername, createTweetDivs} from '../../he
 const DiscoverPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
     const [selectedOption, setSelectedOption] = useState('illenium');
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         getTweetsByUsername(selectedOption)
-            .then(result => setTweetArray(result))
+            .then(result => {
+                setTweetArray(result)
+                setIsLoading(false)
+            })
     }, [selectedOption])
 
     const handleClick = (event) => {
@@ -18,12 +23,10 @@ const DiscoverPage = () => {
         setSelectedOption(event.target.id)
     }
 
-
-
     return (
         <div id="discover-content">
             {
-                tweetArray.length === 0 ?
+                isLoading ?
                     <div id="loader-div" className="page-content">
                         <Loader type="Bars" color="#FFFFFF" height={80} width={80} />
                     </div>
