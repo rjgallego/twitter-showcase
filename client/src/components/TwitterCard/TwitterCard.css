@@ -3,6 +3,7 @@
     width: 30vw;
     max-height: 65vh;
     padding: 10px;
+    overflow: hidden;
 }
 
 #artist-info{
@@ -48,8 +49,7 @@
 }
 
 #tweet-timestamp {
-    position: relative;
-    margin-top: 2.5vh;
+    margin-top: 2vh;
     color: gray;
     font-size: 0.75em;
 }
