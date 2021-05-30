@@ -32,9 +32,9 @@ const HomePage = () => {
             <div id="discover-div" className="text-div scroll-div end">
                 <div className="info-div">
                     <div className="info-text">
-                        <span>Disover New EDM DJs</span>
+                        <span>Discover New EDM Artists</span>
                         <br/><br/>
-                        Select the name of one of the my top five EDM artists to view their most recent tweets.
+                        Select the name of one of the my top five DJs to view their most recent tweets.
                         Scroll through their latest statuses to see what they're about and discover some of their latest news and music!
                     </div>
                     <img src={discover} className="info-img" />
