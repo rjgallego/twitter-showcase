@@ -1,50 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Loader from 'react-loader-spinner';
-
-import TwitterCard from '../../components/TwitterCard/TwitterCard';
 import './DiscoverPage.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import {changeElementClass} from '../../helpers';
+import {changeElementClass, getTweetsByUsername, createTweetDivs} from '../../helpers';
 
 const DiscoverPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
 
-    const DISCOVER_URL = "http://localhost:8080/user?username"
-
     useEffect(() => {
-        getTweetArray('illenium')
+        getTweetsByUsername('illenium')
     }, [])
 
-
-    const getTweetArray = (username) => {
-        axios.get(`${DISCOVER_URL}=${username}`)
-            .then(result => result.data)
-            .then(resultData => setTweetArray(resultData));
-    }
-
-    const handleClick = (event) => {
+    const handleClick = async (event) => {
         changeElementClass(event.target.id, '.option-button', 'selected-option');
-        getTweetArray(event.target.id);
-    }
-
-    const createTweetDivs = () => {
-        return tweetArray.map((tweetData, i) => {
-            if(i === 0) {
-                return  <div key={i} className="page-content in-view scroll-div">
-                            <TwitterCard TweetData={tweetData} />
-                        </div>
-            }
-            if(i === (tweetArray.length - 1)) {
-                return  <div key={i} className="page-content scroll-div end">
-                            <TwitterCard TweetData={tweetData} />
-                        </div>
-            }
-
-            return  <div key={i} className="page-content scroll-div">
-                        <TwitterCard TweetData={tweetData} />
-                    </div>
-        })
+        setTweetArray(await getTweetsByUsername(event.target.id));
     }
 
     return (
@@ -54,7 +23,7 @@ const DiscoverPage = () => {
                     <div id="loader-div" className="page-content">
                         <Loader type="Bars" color="#FFFFFF" height={80} width={80} />
                     </div>
-                :   createTweetDivs()
+                :   createTweetDivs(tweetArray)
             }
             {
                 tweetArray.length === 1 ? <div className="pointer"></div> : <div id="scroll-pointer" className="pointer">V</div>
