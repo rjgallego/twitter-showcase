@@ -38,11 +38,11 @@
         position: relative;
         width: 92%;
         top: 40px;
-        opacity: 0;
+        display: none;
     }
 
     .nav-option.visible{
-        opacity: 1;
+        display: flex;
     }
 
     .mobile{
