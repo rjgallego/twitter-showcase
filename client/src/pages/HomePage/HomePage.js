@@ -1,35 +1,43 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {changeElementClass} from '../../helpers';
+import discover from './images/discover.JPG';
+import search from './images/search.JPG';
+
 
 import './HomePage.css';
 
 const HomePage = () => {
+    useEffect(() => {
+        changeElementClass("title", '.text-div', 'in-view')
+    }, [])
+
     return (
         <div id="home-content">
             <div id="title" className="text-div scroll-div in-view">
                 <div id="sub-title">Using Twitter to Discover</div>
-                <div id="main-title">Electronic Artists</div>
+                <div id="main-title">Electronic Music</div>
             </div>
             <div className="pointer">V</div>
             <div className="text-div scroll-div">
                 <div className="info-div">
-                    <div className="info-img"></div>
+                    <img src={search} className="info-img" />
                     <div className="info-text">
                         <span>Search Your Favorite DJs</span>
                         <br/><br/>
                         Search for specific DJs by entering their Twitter handle into the search field, then scroll through to see their latest tweets.
-                        Or, you can search by name or keyword to see what other people have to say about that artist or related topic;
+                        Or, you can search by keyword to see what other people have to say about that topic.
                     </div>  
                 </div>             
             </div>
             <div id="discover-div" className="text-div scroll-div end">
                 <div className="info-div">
                     <div className="info-text">
-                        <span>Disover Top EDM Artists</span>
+                        <span>Disover New EDM DJs</span>
                         <br/><br/>
                         Select the name of one of the my top five EDM artists to view their most recent tweets.
-                        Scroll through their statuses over the past seven days to see what they're about and discover some of their latest music!
+                        Scroll through their latest statuses to see what they're about and discover some of their latest news and music!
                     </div>
-                    <div className="info-img"></div>
+                    <img src={discover} className="info-img" />
                 </div>
             </div>
         </div>
