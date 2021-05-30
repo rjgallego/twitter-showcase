@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import {FiMenu} from 'react-icons/fi';
 import {changeElementClass} from '../../helpers';
@@ -6,6 +6,10 @@ import './NavBar.css'
 
 const NavBar = () => {
     const [isMenuShowing, setIsMenuShowing] = useState(false);
+
+    useEffect(() => {
+        changeElementClass(window.location.pathname, '.nav-option', 'selected')
+    }, [])
 
     const handleClick = (event) => {
         changeElementClass(event.target.id, '.nav-option', 'selected')
@@ -29,9 +33,9 @@ const NavBar = () => {
     return(
         <nav id="main">
             <div className="mobile" onClick={handleMobileClick}><FiMenu size="3em"/></div>
-            <Link to='/' id="home-link" className="nav-option selected" onClick={handleClick}>Home</Link>
-            <Link to='/search' id="search-link" className="nav-option" onClick={handleClick}>Search</Link>
-            <Link to='/discover' id="discover-link" className="nav-option" onClick={handleClick}>Discover</Link>
+            <Link to='/' id="/" className="nav-option selected" onClick={handleClick}>Home</Link>
+            <Link to='/search' id="/search" className="nav-option" onClick={handleClick}>Search</Link>
+            <Link to='/discover' id="/discover" className="nav-option" onClick={handleClick}>Discover</Link>
         </nav>
     )
     
