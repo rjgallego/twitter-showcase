@@ -12,7 +12,12 @@ const NavBar = () => {
     }, [])
 
     const handleClick = (event) => {
-        changeElementClass(event.target.id, '.nav-option', 'selected')
+        changeElementClass(event.target.id, '.nav-option', 'selected');
+        
+        document.getElementsByClassName("mobile")[0].classList.remove('full-screen');
+        document.querySelectorAll('.nav-option').forEach(navOption => {
+            navOption.classList.remove('visible');
+        })
     }
 
     const handleMobileClick = () => {
