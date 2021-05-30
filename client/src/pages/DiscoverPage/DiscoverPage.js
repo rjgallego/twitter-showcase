@@ -6,15 +6,19 @@ import {changeElementClass, getTweetsByUsername, createTweetDivs} from '../../he
 
 const DiscoverPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
+    const [selectedOption, setSelectedOption] = useState('illenium');
 
     useEffect(() => {
-        getTweetsByUsername('illenium')
-    }, [])
+        getTweetsByUsername(selectedOption)
+            .then(result => setTweetArray(result))
+    }, [selectedOption])
 
-    const handleClick = async (event) => {
+    const handleClick = (event) => {
         changeElementClass(event.target.id, '.option-button', 'selected-option');
-        setTweetArray(await getTweetsByUsername(event.target.id));
+        setSelectedOption(event.target.id)
     }
+
+
 
     return (
         <div id="discover-content">
