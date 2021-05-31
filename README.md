@@ -1,5 +1,5 @@
 # DROPS - A React + Express App 
-DROPS is a web application build with a React front-end and Express backend. The back-end uses the Twitter API to pull tweet information by keyword or username and send that information back to the front-end for display.
+DROPS is a web application build with a React front-end and Express back-end. The back-end uses the Twitter API to pull tweet information by keyword or username and send that information back to the front-end for display.
 
 Try out the live version here: [DROPS Site](https://twitter-drops.herokuapp.com/)
 
