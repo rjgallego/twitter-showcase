@@ -24,6 +24,8 @@ const port = 8080;
 app.use('/search', searchRouter);
 app.use('/user', userRouter);
 
-
+app.get('/', (req, res) => {
+    res.send('DROPS app is running')
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
