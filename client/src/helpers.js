@@ -1,10 +1,6 @@
 import axios from 'axios';
 import TwitterCard from './components/TwitterCard/TwitterCard';
 
-const KEYWORD_URL = 'http://localhost:8080/search/content?q';
-const USER_URL = 'http://localhost:8080/user?username';
-
-
 const changeElementClass = (id, elementsClass, classToSet) => {
     const navOptions = document.querySelectorAll(elementsClass);
     navOptions.forEach((e, i) => {
@@ -16,13 +12,8 @@ const changeElementClass = (id, elementsClass, classToSet) => {
     })
 }
 
-const getTweetsByUsername = async (username) => {
-    const tweetArray = await axios.get(`${USER_URL}=${username}`);
-    return tweetArray.data
-}
-
-const getTweetsByKeyword = async (keyword) => {
-    const tweetArray = await axios.get(`${KEYWORD_URL}=${keyword}`)
+const getTweetData = async (URL, searchTerm) => {
+    const tweetArray = await axios.get(`${URL}=${searchTerm}`);
     return tweetArray.data
 }
 
@@ -46,6 +37,5 @@ const createTweetDivs = (tweetArray) => {
 }
 
 export {changeElementClass, 
-        getTweetsByUsername,
-        getTweetsByKeyword,
-        createTweetDivs}
+        createTweetDivs,
+        getTweetData}
