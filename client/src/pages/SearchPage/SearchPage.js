@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import Loader from 'react-loader-spinner';
 import './SearchPage.css';
-import {getTweetsByUsername, getTweetsByKeyword, createTweetDivs} from '../../helpers';
+import {createTweetDivs, getTweetData} from '../../helpers';
+
+const KEYWORD_URL = 'http://localhost:8080/search/content?q';
+const USER_URL = 'http://localhost:8080/user?username';
 
 const SearchPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
@@ -18,21 +21,20 @@ const SearchPage = () => {
             setTweetArray([])
             return;
         } 
-        let returnedArray;
 
-        if(searchInput.indexOf('@') > -1) {
-            setIsLoading(true);
-            returnedArray = await getTweetsByUsername(searchInput.slice(1))
-            setIsLoading(false);
-            setTweetArray(returnedArray)
-        }
-        else {
-            setIsLoading(true);
-            returnedArray = await getTweetsByKeyword(searchInput)
-            setIsLoading(false);
-            setTweetArray(returnedArray)
-        }
+        searchInput.indexOf('@') > -1 ? 
+            updateTweetArray(USER_URL, searchInput.slice(1))
+        :   updateTweetArray(KEYWORD_URL, searchInput);
 
+    }
+
+    const updateTweetArray = (URL, searchTerm) => {
+        setIsLoading(true);
+        getTweetData(URL, searchTerm)
+            .then(result => {
+                setIsLoading(false);
+                setTweetArray(result);
+            })
     }
 
     return (
