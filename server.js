@@ -19,7 +19,7 @@ if(process.env.ENVIRONMENT === 'prod'){
 const searchRouter = require('./routes/searchRouter');
 const userRouter = require('./routes/userRouter');
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use('/search', searchRouter);
 app.use('/user', userRouter);
