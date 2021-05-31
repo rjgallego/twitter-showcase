@@ -46,10 +46,12 @@ Setup locally
 - Fork this repository to your Github account
 - On your local computer, navigate to the folder you want to store the project: `cd PROJECT-FOLDER-NAME`
 - Clone the forked repository locally: `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY`
+
 Start back-end
 - Navigate to project folder: `cd PROJECT-FOLDER-NAME/twitter-showcase`
 - Install dependencies: `npm install`
 - Start server in development node: `npm run dev`
+
 Start front-end
 - Navigate to the client folder: `cd PROJECT-FOLDER-NAME/twitter-showcase/client`
 - Install dependencies: `npm install`
