@@ -1,18 +1,11 @@
 import React from 'react';
+import moment from 'moment';
+
 import './TwitterCard.css';
 
 const TwitterCard = ({ TweetData }) => {
-
-    const convertTimestamp = () => {
-        const tweetCreatedAt = new Date(TweetData.created_at);
-        const timestampArray = tweetCreatedAt.toString().split(' ');
-        const timeArray = timestampArray[4].split(':');
-        const time = parseInt(timeArray[0]) < 12 ? `${timeArray[0]}:${timeArray[1]} AM` : `${timeArray[0]}:${timeArray[1]} PM`
-        return `${time} - ${timestampArray[1]} ${timestampArray[2]}, ${timestampArray[3]}`
-    }
-
     return (
-        <div id="card-main">
+        <div id="card-div">
             <div id="artist-info">
                 <img id="artist-profile-img" src={TweetData.user.profile_img_url} alt="Twitter user's profile img"/>
                 <div>
@@ -29,7 +22,7 @@ const TwitterCard = ({ TweetData }) => {
                                 alt="Tweet media image"/>
                 }
             </div>
-            <div id="tweet-timestamp">{convertTimestamp()}</div>
+            <div id="tweet-timestamp">{moment(new Date(TweetData.created_at)).calendar()}</div>
         </div> 
     )
 }
