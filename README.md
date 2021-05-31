@@ -14,12 +14,12 @@ The Home page provides an overview of the site and what the user can find on eac
 ![](./screenshots/Home.gif)
 
 ### Search Page
-The Search page allows the user to search by username or keyword. Usernames must be search by @[username] and the username must match the accounts Twitter handle. Without the '@' symbol, the API will search for tweets containing that keyword and return up to fifteen tweets for the user to scroll through one at a time.
+The Search page allows the user to search by username or keyword. Usernames must be entered by @[username] and must match the account's Twitter handle. Without the '@' symbol, the API will search for tweets containing that keyword and return the user to scroll through one at a time.
 
 ![](./screenshots/Search.gif)
 
 ### Discover Page
-The Discover page contains five separate buttons, each pointing to a specific EDM artist that I have selected. Pressing one of these buttons will pull the latest tweets by that specific DJ's Twitter account and display one a time for the user to scroll through.
+The Discover page contains five separate buttons, each pointing to an EDM artist that I have selected. Pressing one of these buttons will pull the latest tweets by that DJ's Twitter account and display one a time for the user to scroll through.
 
 ![](./screenshots/Discover.gif)
 
