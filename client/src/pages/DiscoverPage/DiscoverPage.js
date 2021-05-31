@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import './DiscoverPage.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import {changeElementClass, getTweetsByUsername, createTweetDivs} from '../../helpers';
+import {changeElementClass, createTweetDivs, getTweetData} from '../../helpers';
+
+const USER_URL = 'http://localhost:8080/user?username';
 
 const DiscoverPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
@@ -10,14 +12,18 @@ const DiscoverPage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
-        getTweetsByUsername(selectedOption)
-            .then(result => {
-                setTweetArray(result)
-                setIsLoading(false)
-            })
+        updateTweetArray(USER_URL, selectedOption)
         addClickHandlers();
     }, [selectedOption])
+
+    const updateTweetArray = (URL, searchTerm) => {
+        setIsLoading(true);
+        getTweetData(URL, searchTerm)
+            .then(result => {
+                setIsLoading(false);
+                setTweetArray(result);
+            })
+    }
 
     const handleClick = (event) => {
         changeElementClass(event.target.id, '.option-button', 'selected-option');
