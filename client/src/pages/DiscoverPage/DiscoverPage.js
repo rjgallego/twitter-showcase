@@ -16,11 +16,17 @@ const DiscoverPage = () => {
                 setTweetArray(result)
                 setIsLoading(false)
             })
+        addClickHandlers();
     }, [selectedOption])
 
     const handleClick = (event) => {
         changeElementClass(event.target.id, '.option-button', 'selected-option');
         setSelectedOption(event.target.id)
+    }
+
+    const addClickHandlers = () => {
+        document.querySelectorAll('.option-button')
+            .forEach(option => option.addEventListener('click', handleClick))
     }
 
     return (
@@ -33,14 +39,16 @@ const DiscoverPage = () => {
                 :   createTweetDivs(tweetArray)
             }
             {
-                tweetArray.length === 1 ? <div className="pointer"></div> : <div id="scroll-pointer" className="pointer">V</div>
+                tweetArray.length <= 1 ? 
+                    <div className="pointer"></div> 
+                  : <div id="scroll-pointer" className="pointer">V</div>
             }
             <div id="artist-options">
-                <div id="illenium" className="option-button selected-option" onClick={handleClick}>Illenium</div>
-                <div id="iamalanwalker" className="option-button" onClick={handleClick}>Alan Walker</div>
-                <div id="kygomusic" className="option-button" onClick={handleClick}>Kygo</div>
-                <div id="wearegalantis" className="option-button" onClick={handleClick}>Galantis</div>
-                <div id="KSHMRmusic" className="option-button" onClick={handleClick}>KSHMR</div>
+                <div id="illenium" className="option-button selected-option">Illenium</div>
+                <div id="iamalanwalker" className="option-button">Alan Walker</div>
+                <div id="kygomusic" className="option-button">Kygo</div>
+                <div id="wearegalantis" className="option-button">Galantis</div>
+                <div id="KSHMRmusic" className="option-button">KSHMR</div>
             </div>
         </div>
     )
