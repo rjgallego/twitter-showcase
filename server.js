@@ -16,10 +16,6 @@ const port = process.env.PORT || 8080;
 app.use('/search', searchRouter);
 app.use('/user', userRouter);
 
-app.get('/', (req, res) => {
-    res.send('DROPS app is running')
-})
-
 if(process.env.ENVIRONMENT === 'prod'){
     app.use(express.static(path.join(__dirname, 'client/build')));
 
