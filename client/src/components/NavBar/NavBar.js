@@ -13,26 +13,30 @@ const NavBar = () => {
 
     const handleClick = (event) => {
         changeElementClass(event.target.id, '.nav-option', 'selected');
-        
-        document.getElementsByClassName("mobile")[0].classList.remove('full-screen');
+        closeMobileMenu();
+    }
+
+    const handleMobileClick = () => {
+        if(isMenuShowing){
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+        setIsMenuShowing(!isMenuShowing);
+    }
+
+    const closeMobileMenu = () => {
+        document.getElementsByClassName("mobile")[0].classList.remove('full-screen')
         document.querySelectorAll('.nav-option').forEach(navOption => {
             navOption.classList.remove('visible');
         })
     }
 
-    const handleMobileClick = () => {
-        if(isMenuShowing){
-            document.getElementsByClassName("mobile")[0].classList.remove('full-screen')
-            document.querySelectorAll('.nav-option').forEach(navOption => {
-                navOption.classList.remove('visible');
-            })
-        } else {
-            document.getElementsByClassName("mobile")[0].classList.add('full-screen')
-            document.querySelectorAll('.nav-option').forEach(navOption => {
-                navOption.classList.add('visible');
-            })
-        }
-        setIsMenuShowing(!isMenuShowing);
+    const openMobileMenu = () => {
+        document.getElementsByClassName("mobile")[0].classList.add('full-screen')
+        document.querySelectorAll('.nav-option').forEach(navOption => {
+            navOption.classList.add('visible');
+        })
     }
 
     return(
