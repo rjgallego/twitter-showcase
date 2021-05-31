@@ -8,14 +8,6 @@ app.use(cors({
     origin: process.env.CLIENT_URL
 }))
 
-if(process.env.ENVIRONMENT === 'prod'){
-    app.use(express.static(path.join(__dirname, 'client/build')));
-
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-    });
-}
-
 const searchRouter = require('./routes/searchRouter');
 const userRouter = require('./routes/userRouter');
 
@@ -27,5 +19,13 @@ app.use('/user', userRouter);
 app.get('/', (req, res) => {
     res.send('DROPS app is running')
 })
+
+if(process.env.ENVIRONMENT === 'prod'){
+    app.use(express.static(path.join(__dirname, 'client/build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+    });
+}
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
