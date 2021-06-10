@@ -4,8 +4,7 @@ import './DiscoverPage.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import {changeElementClass, createTweetDivs, getTweetData} from '../../helpers';
 
-const USER_URL = process.env.NODE_ENV === 'development' ? 
-                    'http://localhost:8080/user?username' : 'https://twitter-drops.herokuapp.com/user?username';
+const USER_URL = '/user?username';
 
 
 const DiscoverPage = () => {

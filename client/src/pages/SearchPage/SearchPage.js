@@ -3,10 +3,8 @@ import Loader from 'react-loader-spinner';
 import './SearchPage.css';
 import {createTweetDivs, getTweetData} from '../../helpers';
 
-const KEYWORD_URL = process.env.NODE_ENV === 'development' ? 
-                    'http://localhost:8080/search/content?q' : 'https://twitter-drops.herokuapp.com/search/content?q';
-const USER_URL = process.env.NODE_ENV === 'development' ? 
-                    'http://localhost:8080/user?username' : 'https://twitter-drops.herokuapp.com/user?username';
+const KEYWORD_URL = '/search/content?q';
+const USER_URL = '/user?username';
 
 const SearchPage = () => {
     const [tweetArray, setTweetArray] = useState([]);
