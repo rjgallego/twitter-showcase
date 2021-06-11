@@ -1,24 +1,16 @@
-import React, {useEffect} from 'react';
-import {changeElementClass} from '../../helpers';
+import React from 'react';
 import discover from './images/discover.JPG';
 import search from './images/search.JPG';
-
-
 import './HomePage.css';
 
 const HomePage = () => {
-    useEffect(() => {
-        changeElementClass("title", '.text-div', 'in-view')
-    }, [])
-
     return (
         <div id="home-content">
             <div id="title" className="text-div scroll-div in-view">
                 <div id="sub-title">Using Twitter to Discover</div>
                 <div id="main-title">Electronic Music</div>
             </div>
-            <div className="pointer">V</div>
-            <div className="text-div scroll-div">
+            <div id="search" className="text-div scroll-div">
                 <div className="info-div">
                     <img src={search} className="info-img" />
                     <div className="info-text">
@@ -29,7 +21,7 @@ const HomePage = () => {
                     </div>  
                 </div>             
             </div>
-            <div id="discover-div" className="text-div scroll-div end">
+            <div id="discover" className="text-div scroll-div end">
                 <div className="info-div">
                     <div className="info-text">
                         <span>Discover New EDM Artists</span>
@@ -40,6 +32,7 @@ const HomePage = () => {
                     <img src={discover} className="info-img" />
                 </div>
             </div>
+            <div className="pointer">V</div>
         </div>
     )
     
