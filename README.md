@@ -54,7 +54,7 @@ Start back-end
 - Add .env file to twitter-showcase folder
 - Add variable CLIENT_URL and set to http://localhost:3000/
 - Add variable BEARER_TOKEN and set your bearer token for your Twitter account
-    - if you don't have a bearer token, you can create an account at [developer.twitter.com](developer.twitter.com) and use your account to generate bearer tokens. Instructions can be found [HERE](https://developer.twitter.com/ja/docs/basics/authentication/guides/access-tokens)
+    - if you don't have a bearer token, you can create an account at [developer.twitter.com](developer.twitter.com) and use your account to generate bearer tokens. Instructions on how to create bearer tokens can be found [HERE](https://developer.twitter.com/ja/docs/basics/authentication/guides/access-tokens).
     - NOTE: if you already have a Twitter account and don't have your bearer token saved, you can generate a new one, but you will need to update any existing application with the new token value
 
 Start front-end
