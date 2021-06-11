@@ -55,7 +55,7 @@
 }
 
 @media (max-width: 700px) {
-    #card-main{
+    #card-div{
         width: 70vw;
     }
 
